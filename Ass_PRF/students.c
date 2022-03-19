@@ -3,8 +3,10 @@
 #include <string.h>
 
 FILE *input_student_file;
+FILE *input_subjects_file;
+FILE *input_marks_file;
 
-struct Student_Info 
+struct Student_Info
 {
    char  ID[10];
    char  name[50];
@@ -126,8 +128,8 @@ void getStudent()
     strcpy(student1.name, name);
     student1.age = getInt("Enter age (18 - 25) : ", 18, 25);
     fprintf(input_student_file, "\n%s", student1.ID);
-    fprintf(input_student_file, "            %s", student1.name);
-    fprintf(input_student_file, "            %d", student1.age);
+    fprintf(input_student_file, ";%s", student1.name);
+    fprintf(input_student_file, ";%d", student1.age);
     fclose(input_student_file);
 }
 
