@@ -1,3 +1,0 @@
-HE123456;Nguyen Van B;20
-HE123457;Nguyen Van A;21
-HE123458;Nguyen Van C;20
