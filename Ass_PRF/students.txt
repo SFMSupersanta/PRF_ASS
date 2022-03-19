@@ -1,0 +1,7 @@
+HE123456		Nguyen Van B		20
+HE123457		Nguyen Van A		21
+HE123458		Nguyen Van C		20
+HE174696		Nguyen Van Sech	19
+HE696969		San Se Gay		20
+HE176969        	Son Sech San        	25
+HE324671                Son Beo Gay           23
