@@ -124,11 +124,10 @@ void getStudent()
     struct Student_Info student1;
     strcpy(student1.ID, ID);
     strcpy(student1.name, name);
-
     student1.age = getInt("Enter age (18 - 25) : ", 18, 25);
     fprintf(input, "\n%s", student1.ID);
-    fprintf(input, "                %s", student1.name);
-    fprintf(input, "             %d", student1.age);
+    fprintf(input, "            %s", student1.name);
+    fprintf(input, "            %d", student1.age);
     fclose(input);
 }
 
