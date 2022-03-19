@@ -9,22 +9,32 @@ FILE *input_marks_file;
 struct Student_Info
 {
    char  ID[10];
-   char  name[50];
+   char  name[256];
    int   age;
    
 };
 
+struct Subjects
+{
+    char subject_code[8];
+    char subject_name[256];
+};
+
 void open_file_students()
 {
-    
     input_student_file = fopen("students.txt", "a+");
     if(input_student_file == NULL)
-        {
-            printf ("unable to open file");
-        }
+    printf ("unable to open file");
 }
 
- void clear_buffer (void)
+void open_file_subjects()
+{
+    input_subjects_file = fopen("subjects.txt", "a+");
+    if(input_subjects_file == NULL)
+    printf ("unable to open file");
+}
+
+void clear_buffer (void)
 {
      char c;
      while ((c = getchar()) != '\n'&&c != EOF);
@@ -133,7 +143,21 @@ void getStudent()
     fclose(input_student_file);
 }
 
-void cat_students()
+void getSubjects()
+{
+    open_file_subjects();
+    char subject_code[8], subject_name[256];
+    getString("Enter subject ID (not empty) : ", subject_code, 8);
+    getString("Enter subject name (not empty) : ", subject_name, 256);
+    struct Subjects subjects;
+    strcpy(subjects.subject_code, subject_code);
+    strcpy(subjects.subject_name, subject_name);
+    fprintf(input_subjects_file, "\n%s", subjects.subject_code);
+    fprintf(input_subjects_file, ";%s", subjects.subject_name);
+    fclose(input_subjects_file);
+}
+
+void cat_students() //print students to console
 {
     open_file_students();
     char list;
@@ -141,15 +165,32 @@ void cat_students()
     do
     {
         list = fgetc(input_student_file);
-        if(list!=EOF) printf ("%c",list);
+        if(list != EOF) printf ("%c", list);
     }
     while(!feof(input_student_file));
     fclose (input_student_file);
 }
 
+void cat_subjects() //print subjects to console
+{ 
+    open_file_subjects();
+    char list;
+    printf ("\n********** List of subjects **********\n");
+    do
+    {
+        list = fgetc(input_subjects_file);
+        if(list != EOF) printf ("%c", list);
+    }
+    while(!feof(input_subjects_file));
+    fclose (input_subjects_file);
+}
+
 int main()
 {   
-    getStudent();
-    cat_students();
+    //comment / uncomment if needed (for testing purposes)
+    //getStudent();                 
+    //cat_students();
+    getSubjects();
+    cat_subjects();
     return 0;
 }
