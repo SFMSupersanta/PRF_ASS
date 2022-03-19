@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-FILE *input;
+FILE *input_student_file;
 
 struct Student_Info 
 {
@@ -12,11 +12,11 @@ struct Student_Info
    
 };
 
-void open_file()
+void open_file_students()
 {
     
-    input = fopen("students.txt", "a+");
-    if(input == NULL)
+    input_student_file = fopen("students.txt", "a+");
+    if(input_student_file == NULL)
         {
             printf ("unable to open file");
         }
@@ -58,9 +58,9 @@ void getString(char msg[], char arr[],int size)
 
 long long getInt(char msg[], long long min, long long max) 
 {
-     char val[20];           //input value
+     char val[20];
      long long intval;
-     int count,rc;      //int value and count value
+     int count,rc;
      while(1)
      {
          printf("%s", msg);
@@ -117,7 +117,7 @@ long long getInt(char msg[], long long min, long long max)
 
 void getStudent()
 {   
-    open_file();
+    open_file_students();
     char name[256], ID[10];
     getString("Enter student ID (not empty) : ", ID, 10);
     getString("Enter student name (not empty) : ", name, 256);
@@ -125,24 +125,24 @@ void getStudent()
     strcpy(student1.ID, ID);
     strcpy(student1.name, name);
     student1.age = getInt("Enter age (18 - 25) : ", 18, 25);
-    fprintf(input, "\n%s", student1.ID);
-    fprintf(input, "            %s", student1.name);
-    fprintf(input, "            %d", student1.age);
-    fclose(input);
+    fprintf(input_student_file, "\n%s", student1.ID);
+    fprintf(input_student_file, "            %s", student1.name);
+    fprintf(input_student_file, "            %d", student1.age);
+    fclose(input_student_file);
 }
 
 void cat_students()
 {
-    open_file();
+    open_file_students();
     char list;
-    printf ("List of students:\n");
+    printf ("\n********** List of students **********\n");
     do
     {
-        list = fgetc(input);
+        list = fgetc(input_student_file);
         if(list!=EOF) printf ("%c",list);
     }
-    while(!feof(input));
-    fclose (input);
+    while(!feof(input_student_file));
+    fclose (input_student_file);
 }
 
 int main()
