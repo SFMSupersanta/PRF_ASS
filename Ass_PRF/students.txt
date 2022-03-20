@@ -1,5 +1,2 @@
 HE123456;Nguyen Van B;20
-HE123457;Nguyen Van A;21
-HE123458;Nguyen Van C;20
-HE177013;Nguyen Van Cuc kec;20
-HE176209;SanNNH;19
+HE176209;SanNNh;19
