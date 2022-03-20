@@ -58,7 +58,7 @@ void addMark(void)
     FILE *Pmark = NULL;
     Pmark = fopen("mark.txt", "a+");             // Pointer to markt file.   
     FILE *Pstudent = NULL;
-    Pstudent = fopen("students.txt", "a+");        // Pointer to student file.
+    Pstudent = fopen("students.txt", "r");        // Pointer to student file.
     if (Pmark == NULL || Pstudent == NULL) puts("Failed to open mark.txt"); // If can't open file.
     else
     {
@@ -97,7 +97,16 @@ void addMark(void)
         }
         printf("Enter student ID in the list: ");
         char stdID[255];
-        getString("Enter student ID in the list: ",stdID, 10); 
+        int status = 1;
+        do
+        { 
+            getString("Enter student ID in the list: ",stdID, 10); 
+            for (int i = 1; i < stucount; i++)
+            { 
+                if(strcmp(stuarr[i].id, stdID) == 0) status = 0;
+            }
+        } while (status == 1);
+        
     }
 }
 
